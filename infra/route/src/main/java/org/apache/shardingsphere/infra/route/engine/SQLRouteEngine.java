@@ -36,6 +36,8 @@ import java.util.Collection;
 
 /**
  * SQL route engine.
+ *
+ * 路由：主要是看需不需要全库扫描，还是可以通过分表键准确命中数据库和表
  */
 @HighFrequencyInvocation
 @RequiredArgsConstructor

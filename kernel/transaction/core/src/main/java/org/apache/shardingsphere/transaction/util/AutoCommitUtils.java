@@ -37,6 +37,7 @@ public final class AutoCommitUtils {
      * @return need to open a new transaction.
      */
     public static boolean needOpenTransaction(final SQLStatement sqlStatement) {
+        // select语句或者没有from字段的 直接返回false
         if (sqlStatement instanceof SelectStatement && !((SelectStatement) sqlStatement).getFrom().isPresent()) {
             return false;
         }

@@ -34,6 +34,10 @@ import java.util.Map;
 
 /**
  * Generic SQL rewrite engine.
+ *
+ * 这一步是看分库分表sql需不需要改写。
+ * 比如我们有4条数据，分别是ds_0数据库 1条数据，值是10, ds_1数据库3条数据，值分别是10、20、30
+ * 我们有一个求平均值的sql
  */
 @RequiredArgsConstructor
 public final class GenericSQLRewriteEngine {

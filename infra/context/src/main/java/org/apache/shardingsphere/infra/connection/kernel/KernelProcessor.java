@@ -48,7 +48,9 @@ public final class KernelProcessor {
      */
     public ExecutionContext generateExecutionContext(final QueryContext queryContext, final ShardingSphereDatabase database, final RuleMetaData globalRuleMetaData,
                                                      final ConfigurationProperties props, final ConnectionContext connectionContext) {
+        // 路由
         RouteContext routeContext = route(queryContext, database, globalRuleMetaData, props, connectionContext);
+        // 重写
         SQLRewriteResult rewriteResult = rewrite(queryContext, database, globalRuleMetaData, props, routeContext, connectionContext);
         ExecutionContext result = createExecutionContext(queryContext, database, routeContext, rewriteResult);
         logSQL(queryContext, props, result);

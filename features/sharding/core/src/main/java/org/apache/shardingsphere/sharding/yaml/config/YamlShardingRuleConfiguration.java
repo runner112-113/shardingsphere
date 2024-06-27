@@ -41,6 +41,9 @@ import java.util.Map;
 
 /**
  * Sharding rule configuration for YAML.
+ *
+ * 对应 rules下的!SHARDING
+ * 用于配置分片规则
  */
 @RepositoryTupleEntity("sharding")
 @Getter

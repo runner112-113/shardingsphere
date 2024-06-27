@@ -36,6 +36,8 @@ import java.util.concurrent.Future;
 
 /**
  * Executor engine.
+ *
+ * 真正的执行sql
  */
 @HighFrequencyInvocation
 @Getter

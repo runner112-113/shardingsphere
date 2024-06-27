@@ -32,6 +32,9 @@ import java.util.Map;
 
 /**
  * Encrypt rule configuration for YAML.
+ *
+ * 对应于rules下的!ENCRYPT
+ * 用于配置数据加密规则
  */
 @RepositoryTupleEntity("encrypt")
 @Getter

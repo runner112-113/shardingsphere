@@ -137,10 +137,12 @@ public final class SQLFederationEngine implements AutoCloseable {
             return true;
         }
         // TODO END
+        // 是否开启联邦查询
         boolean sqlFederationEnabled = sqlFederationRule.getConfiguration().isSqlFederationEnabled();
         if (!sqlFederationEnabled || !(sqlStatementContext instanceof SelectStatementContext)) {
             return false;
         }
+        // 是否全部查询 SQL 使用联邦查询
         boolean allQueryUseSQLFederation = sqlFederationRule.getConfiguration().isAllQueryUseSQLFederation();
         if (allQueryUseSQLFederation) {
             return true;

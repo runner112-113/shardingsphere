@@ -32,6 +32,9 @@ import java.util.Map;
 
 /**
  * Readwrite-splitting rule configuration for YAML.
+ *
+ * 对应于rules下的!READWRITE_SPLITTING
+ * 用于配置读写分离规则
  */
 @RepositoryTupleEntity("readwrite_splitting")
 @Getter

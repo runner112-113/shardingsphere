@@ -33,6 +33,9 @@ import java.util.Map;
 
 /**
  * Shadow rule configuration.
+ *
+ * 对应于rules下的!SHADOW
+ * 用于配置影子库规则（主要用于灰度发布和测试）
  */
 @RepositoryTupleEntity("shadow")
 @Getter

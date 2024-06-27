@@ -116,6 +116,7 @@ public final class ShardingSphereDataSource extends AbstractDataSourceAdapter im
                 // CHECKSTYLE:ON
                 throw new SQLException(ex);
             }
+
         }
     }
 }

@@ -32,6 +32,10 @@ import java.util.Map;
 
 /**
  * Mask rule configuration for YAML.
+ *
+ * 对应于rules下的!MASK
+ * 用于定义数据掩码规则
+ * 数据掩码用于保护敏感数据，通过掩码规则可以在查询结果中隐藏或变换特定的数据
  */
 @RepositoryTupleEntity("mask")
 @Getter

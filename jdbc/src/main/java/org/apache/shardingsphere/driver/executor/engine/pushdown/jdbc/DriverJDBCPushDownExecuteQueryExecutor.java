@@ -94,7 +94,9 @@ public final class DriverJDBCPushDownExecuteQueryExecutor {
                                   final DriverExecutionPrepareEngine<JDBCExecutionUnit, Connection> prepareEngine, final Statement statement,
                                   final Map<String, Integer> columnLabelAndIndexMap,
                                   final StatementAddCallback addCallback, final StatementReplayCallback replayCallback) throws SQLException {
+        //  路由 + 重写 + 执行
         List<QueryResult> queryResults = getQueryResults(database, queryContext, prepareEngine, addCallback, replayCallback);
+        // 合并
         return new ShardingSphereResultSetFactory(connectionContext, globalRuleMetaData, props, statements).newInstance(database, queryContext, queryResults, statement, columnLabelAndIndexMap);
     }
     
@@ -102,6 +104,7 @@ public final class DriverJDBCPushDownExecuteQueryExecutor {
     private List<QueryResult> getQueryResults(final ShardingSphereDatabase database, final QueryContext queryContext, final DriverExecutionPrepareEngine<JDBCExecutionUnit, Connection> prepareEngine,
                                               final StatementAddCallback addCallback, final StatementReplayCallback replayCallback) throws SQLException {
         statements.clear();
+        // 路由 + 重写
         ExecutionContext executionContext = new KernelProcessor().generateExecutionContext(queryContext, database, globalRuleMetaData, props, connectionContext);
         ExecutionGroupContext<JDBCExecutionUnit> executionGroupContext = prepareEngine.prepare(database.getName(), executionContext.getRouteContext(), executionContext.getExecutionUnits(),
                 new ExecutionGroupReportContext(processId, database.getName(), connectionContext.getGrantee()));
@@ -114,6 +117,7 @@ public final class DriverJDBCPushDownExecuteQueryExecutor {
         ProcessEngine processEngine = new ProcessEngine();
         try {
             processEngine.executeSQL(executionGroupContext, queryContext);
+            // 执行
             return jdbcExecutor.execute(executionGroupContext, new ExecuteQueryCallbackFactory(prepareEngine.getType()).newInstance(database, queryContext));
         } finally {
             processEngine.completeSQLExecution(executionGroupContext.getReportContext().getProcessId());

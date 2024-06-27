@@ -137,8 +137,11 @@ public final class ShardingSpherePreparedStatement extends AbstractPreparedState
         ShardingSpherePreconditions.checkNotEmpty(sql, () -> new EmptySQLException().toSQLException());
         this.connection = connection;
         metaData = connection.getContextManager().getMetaDataContexts().getMetaData();
+        // 去掉hint信息 获取原始sql
         this.sql = SQLHintUtils.removeHint(sql);
+        // 提取hintValue
         hintValueContext = SQLHintUtils.extractHint(sql);
+        // 解析sql得到SQLStatement
         SQLStatement sqlStatement = parseSQL(connection);
         sqlStatementContext = new SQLBindEngine(metaData, connection.getDatabaseName(), hintValueContext).bind(sqlStatement, Collections.emptyList());
         String databaseName = sqlStatementContext instanceof TableAvailable
@@ -157,6 +160,7 @@ public final class ShardingSpherePreparedStatement extends AbstractPreparedState
     
     private SQLStatement parseSQL(final ShardingSphereConnection connection) {
         SQLParserRule sqlParserRule = metaData.getGlobalRuleMetaData().getSingleRule(SQLParserRule.class);
+        // SQL解析
         return sqlParserRule.getSQLParserEngine(metaData.getDatabase(connection.getDatabaseName()).getProtocolType()).parse(sql, true);
     }
     

@@ -31,6 +31,9 @@ import java.util.LinkedList;
 
 /**
  * Broadcast rule configuration for YAML.
+ *
+ * 对应于rules下的!BROADCAST
+ * 用于配置广播表规则
  */
 @RepositoryTupleEntity("broadcast")
 @Getter

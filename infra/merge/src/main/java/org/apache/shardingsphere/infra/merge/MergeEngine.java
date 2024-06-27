@@ -43,6 +43,8 @@ import java.util.Optional;
 
 /**
  * Merge engine.
+ *
+ * 把执行的结果归并到一起（查询才有归并）
  */
 @HighFrequencyInvocation
 public final class MergeEngine {

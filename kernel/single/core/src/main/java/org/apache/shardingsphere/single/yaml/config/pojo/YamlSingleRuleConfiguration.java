@@ -29,6 +29,9 @@ import java.util.LinkedList;
 
 /**
  * Single rule configuration for YAML.
+ *
+ * 对应于rules下的!SINGLE
+ * 单表规则用于指定哪些单表需要被 ShardingSphere 管理，也可设置默认的单表数据源。
  */
 @RepositoryTupleEntity("single")
 @Getter
